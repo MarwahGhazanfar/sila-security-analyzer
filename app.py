@@ -110,7 +110,7 @@ with tab2:
 
 # ---------------- PRIORITY THREATS ----------------
 with tab3:
-    st.header("Priority Threats (Severity ? 3)")
+    st.header("Priority Threats (Severity ≥ 3)")
     df = st.session_state.logs[st.session_state.logs["Severity"] >= 3].copy()
     df["Severity"] = df["Severity"].map(sev_text)
     st.dataframe(df, use_container_width=True)
@@ -125,7 +125,7 @@ with tab3:
 
 # ---------------- SUSPICIOUS IPs ----------------
 with tab4:
-    st.header("Suspicious IPs (? 3 Attempts)")
+    st.header("Suspicious IPs (≥ 3 Attempts)")
     suspicious = st.session_state.logs["IP"].value_counts()
     suspicious = suspicious[suspicious >= 3]
     st.table(suspicious)
@@ -146,5 +146,6 @@ with tab5:
             st.dataframe(df, use_container_width=True)
         except:
             st.error("Invalid time input")
+
 
 
